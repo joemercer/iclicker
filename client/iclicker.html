@@ -1,0 +1,41 @@
+<head>
+  <title>iClicker</title>
+</head>
+
+<body>
+  {{> page}}
+</body>
+
+<template name="page">
+  {{> splash}}
+</template>
+
+<template name="splash">
+  {{#if currentUser}}
+    {{> loggedIn}}
+  {{else}}
+    {{> loggedOut}}
+  {{/if}}
+</template>
+
+<template name="loggedOut">
+  <input id="uWaterlooId" type="text" value="55555555">
+  <input id="login" type="button" value="Log in">
+</template>
+
+<template name="loggedIn">
+  {{#if loggingIn}}
+    <p>Logging in...</p>
+  {{else}}
+    <div>
+      Hello {{currentUser.profile.name}}
+      <input id="logout" type="button" value="Log out">
+    </div>
+    {{> profile}}
+  {{/if}}
+</template>
+
+<template name="profile">
+  <input id="profileName" type="text" value="{{currentUser.profile.name}}">
+  <input id="addProfileName" type="button" value="Edit Name">
+</template>
