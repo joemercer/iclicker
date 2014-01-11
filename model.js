@@ -23,13 +23,15 @@ Meteor.methods({
   joinGroup: function (groupName) {
     var group = Groups.findOne({groupName: groupName});
 
-    // !!! what happens if already in group?
-
     if (!group) {
-      return; // not a group
+      return 'group doesn\'t exist';
     }
 
-    Groups.update(group, {$push: {members: this.userId}});
+    if (_(group.members).contains(this.userId)) {
+      return 'already in group';
+    }
+
+    return Groups.update(group, {$push: {members: this.userId}});
   }
 
 });
