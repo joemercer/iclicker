@@ -1,5 +1,8 @@
 ////////// Main client application logic //////////
 
+// # Accounts
+// __________
+
 Meteor.loginWithUWaterlooId = function(uWaterlooId, callback) {
   //create a login request with admin: true, so our loginHandler can handle this request
   var loginRequest = {uWaterlooId: uWaterlooId};
@@ -32,9 +35,31 @@ Template.loggedIn.events({
   }
 });
 
+// # Profiles
+// __________
+
 Template.profile.events({
   'click #addProfileName': function(e, tmpl) {
     var name = tmpl.find('#profileName').value;
     Meteor.users.update({_id: Meteor.user()._id}, {$set: {profile: {name: name}}});
   }
 });
+
+// # Groups
+// ________
+
+Template.groups.events({
+  'click #createGroup': function(e, tmpl) {
+    var groupName = tmpl.find('#groupName').value;
+    Meteor.call('createGroup', groupName);
+  }
+});
+
+Template.groups.all = function() {
+  return Groups.find({});
+};
+
+
+
+
+

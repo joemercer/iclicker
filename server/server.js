@@ -1,5 +1,9 @@
 ////////// Server only logic //////////
 
+
+// # Accounts
+// __________
+
 Accounts.registerLoginHandler(function(loginRequest) {
 
   //we create a admin user if not exists, and get the userId
@@ -29,6 +33,9 @@ Accounts.registerLoginHandler(function(loginRequest) {
   }
 
 });
+
+// # Groups
+// ________
 
 
 

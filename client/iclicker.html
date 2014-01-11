@@ -31,7 +31,12 @@
       Hello {{currentUser.profile.name}}
       <input id="logout" type="button" value="Log out">
     </div>
-    {{> profile}}
+    <div>
+      {{> profile}}
+    </div>
+    <div>
+      {{> groups}}
+    </div>
   {{/if}}
 </template>
 
@@ -39,3 +44,19 @@
   <input id="profileName" type="text" value="{{currentUser.profile.name}}">
   <input id="addProfileName" type="button" value="Edit Name">
 </template>
+
+<template name="groups">
+  <input id="groupName" type="text" value="Math239 yo">
+  <input id="createGroup" type="button" value="Add Course">
+  <ul>
+    {{#each all}}
+      <li>{{groupName}}</li>
+    {{/each}}
+  </ul>
+</template>
+
+
+
+
+
+
