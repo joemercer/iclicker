@@ -60,7 +60,7 @@ Template.groups.events({
 });
 
 Template.groups.all = function() {
-  return Groups.find({});
+  return Groups.find({members: {$not: Meteor.user()._id}});
 };
 
 Template.groups.mine = function() {
