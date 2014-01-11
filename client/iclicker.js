@@ -48,6 +48,8 @@ Template.profile.events({
 // # Groups
 // ________
 
+Session.set('activeGroup', null);
+
 Template.groups.events({
   'click #createGroup': function(e, tmpl) {
     var groupName = tmpl.find('#groupName').value;
@@ -56,6 +58,10 @@ Template.groups.events({
   'click .joinGroup': function(e, tmpl) {
     var groupName = e.target.text;
     Meteor.call('joinGroup', groupName);
+  },
+  'click .enterGroup': function(e, tmpl) {
+    var groupName = e.target.text;
+    Session.set('activeGroup', groupName);
   }
 });
 
@@ -67,6 +73,12 @@ Template.groups.mine = function() {
   return Groups.find({members: Meteor.user()._id});
 };
 
+// # Active Group
+// ______________
+
+Template.activeGroup.label = function() {
+  return Session.get('activeGroup');
+};
 
 
 

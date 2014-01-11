@@ -52,6 +52,9 @@
     <div>
       {{> groups}}
     </div>
+    <div>
+      {{> activeGroup}}
+    </div>
   {{/if}}
 </template>
 
@@ -77,12 +80,16 @@
       <li><a class="joinGroup">{{groupName}}</a></li>
     {{/each}}
   </ul>
-  <p>My courses</p>
+  <p>My courses, click to enter the classroom</p>
   <ul>
     {{#each mine}}
-      <li><a class="joinGroup">{{groupName}}</a></li>
+      <li><a class="enterGroup">{{groupName}}</a></li>
     {{/each}}
   </ul>
+</template>
+
+<template name="activeGroup">
+  <h2>Your active group is {{label}}</h2>
 </template>
 
 
