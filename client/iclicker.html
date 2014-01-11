@@ -1,5 +1,11 @@
-<head>
-  <title>iClicker</title>
+<head>  
+  <title>iClickr</title>
+  <meta name="author" content="Nicole Jiang & Joe Mercer">
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="iclicker.css">
 </head>
 
 <body>
@@ -7,10 +13,6 @@
 </body>
 
 <template name="page">
-  {{> splash}}
-</template>
-
-<template name="splash">
   {{#if currentUser}}
     {{> loggedIn}}
   {{else}}
@@ -19,9 +21,22 @@
 </template>
 
 <template name="loggedOut">
-  <input id="uWaterlooId" type="text" value="55555555">
-  <input id="login" type="button" value="Log in">
+  <div class="login_wrapper wrapper">
+    <img id="logo" src="/img/logo.png">
+    <h1 id="login_title">iCLiCKR</h1>
+    <div class="login_input">
+      <input id="uWaterlooId" name="profileName" placeholder="USERNAME" size="30" tabindex="1" type="text">
+      <input id="user_password" name="user_password" placeholder="PASSWORD" size="30" tabindex="2" type="password">
+      <input id="login" type="button" value="LOG IN">
+    </div>
+  </div><!-- end login_wrapper -->
 </template>
+
+
+
+
+
+<!-- CHOOSE COURSE -->
 
 <template name="loggedIn">
   {{#if loggingIn}}
@@ -39,6 +54,14 @@
     </div>
   {{/if}}
 </template>
+
+
+
+
+
+
+
+
 
 <template name="profile">
   <input id="profileName" type="text" value="{{currentUser.profile.name}}">
@@ -61,7 +84,6 @@
     {{/each}}
   </ul>
 </template>
-
 
 
 
