@@ -47,10 +47,17 @@
 
 <template name="groups">
   <input id="groupName" type="text" value="Math239 yo">
-  <input id="createGroup" type="button" value="Add Course">
+  <input id="createGroup" type="button" value="Create Course">
+  <p>Click to join a course</p>
   <ul>
     {{#each all}}
-      <li>{{groupName}}</li>
+      <li><a class="joinGroup">{{groupName}}</a></li>
+    {{/each}}
+  </ul>
+  <p>My courses</p>
+  <ul>
+    {{#each mine}}
+      <li><a class="joinGroup">{{groupName}}</a></li>
     {{/each}}
   </ul>
 </template>

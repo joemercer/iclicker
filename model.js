@@ -18,5 +18,18 @@ Meteor.methods({
         members: [this.userId]
       });
     }
+  },
+
+  joinGroup: function (groupName) {
+    var group = Groups.findOne({groupName: groupName});
+
+    // !!! what happens if already in group?
+
+    if (!group) {
+      return; // not a group
+    }
+
+    Groups.update(group, {$push: {members: this.userId}});
   }
+
 });

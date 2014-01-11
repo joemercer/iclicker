@@ -52,11 +52,19 @@ Template.groups.events({
   'click #createGroup': function(e, tmpl) {
     var groupName = tmpl.find('#groupName').value;
     Meteor.call('createGroup', groupName);
+  },
+  'click .joinGroup': function(e, tmpl) {
+    var groupName = e.target.text;
+    Meteor.call('joinGroup', groupName);
   }
 });
 
 Template.groups.all = function() {
   return Groups.find({});
+};
+
+Template.groups.mine = function() {
+  return Groups.find({members: Meteor.user()._id});
 };
 
 
