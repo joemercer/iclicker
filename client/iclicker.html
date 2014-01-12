@@ -107,15 +107,15 @@
 
       <input id="addQuestion" type="button" value="Add Question">
 
+      <p>All of the questions, click to answer a question</p>
+
+      <ul>
+        {{#each questions}}
+          <li><a class="selectQuestion">{{text}}</a></li>
+        {{/each}}
+      </ul>
+
     {{/if}}
-
-    <p>All of the questions, click to answer a question</p>
-
-    <ul>
-      {{#each questions}}
-        <li><a class="selectQuestion">{{text}}</a></li>
-      {{/each}}
-    </ul>
 
   {{/if}}
 </template>
