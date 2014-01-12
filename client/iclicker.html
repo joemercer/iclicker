@@ -52,6 +52,12 @@
     <div>
       {{> groups}}
     </div>
+    <div>
+      {{> activeGroup}}
+    </div>
+    <div>
+      {{> activeQuestion}}
+    </div>
   {{/if}}
 </template>
 
@@ -77,12 +83,59 @@
       <li><a class="joinGroup">{{groupName}}</a></li>
     {{/each}}
   </ul>
-  <p>My courses</p>
+  <p>My courses, click to enter the classroom</p>
   <ul>
     {{#each mine}}
-      <li><a class="joinGroup">{{groupName}}</a></li>
+      <li><a class="enterGroup">{{groupName}}</a></li>
     {{/each}}
   </ul>
+</template>
+
+<template name="activeGroup">
+  {{#if activeGroup}}
+    <h2>Your active group is {{activeGroup}}</h2>
+
+    {{#if canAddQuestion}}
+
+      <input id="questionText" type="text" value="What is your favorite color?">
+      <input id="answerA" type="text" value="Blue">
+      <input id="answerB" type="text" value="Green">
+      <input id="answerC" type="text" value="Red">
+      <input id="answerD" type="text" value="Pink">
+      <input id="answerE" type="text" value="Yellow">
+      <input id="questionTimeLimit" type="text" value="120">
+
+      <input id="addQuestion" type="button" value="Add Question">
+
+      <p>All of the questions, click to answer a question</p>
+
+      <ul>
+        {{#each questions}}
+          <li><a class="activateQuestion" data-questionid="{{_id}}">Active: {{active}}</a> - Question: {{text}}</li>
+        {{/each}}
+      </ul>
+
+    {{/if}}
+
+  {{/if}}
+</template>
+
+<template name="activeQuestion">
+  {{#if activeQuestion}}
+    <h2>Current Question: {{activeQuestion}}</h2>
+    <p>And the answers are</p>
+    <ol>
+      {{#each answers}}
+        <li><a class="answerQuestion">{{text}}</a></li>
+      {{/each}}
+    </ol>
+    <p>Your answers:</p>
+    <ul>
+      {{#each yourAnswers}}
+        <li>{{text}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
 </template>
 
 
