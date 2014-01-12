@@ -138,6 +138,11 @@ Template.activeQuestion.answers = function() {
   return Answers.find({questionId: question._id});
 };
 
+Template.activeQuestion.yourAnswers = function() {
+  var question = Session.get('activeQuestion');
+  return Answers.find({questionId: question._id, endorsers: Meteor.user()._id});
+};
+
 
 
 

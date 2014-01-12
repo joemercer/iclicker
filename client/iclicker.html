@@ -118,13 +118,19 @@
 
 <template name="activeQuestion">
   {{#if activeQuestion}}
-    <h2>Current Question: {{text}}</h2>
-    <p>And the answer are</p>
+    <h2>Current Question: {{activeQuestion}}</h2>
+    <p>And the answers are</p>
     <ol>
       {{#each answers}}
         <li><a class="answerQuestion">{{text}}</a></li>
       {{/each}}
     </ol>
+    <p>Your answers:</p>
+    <ul>
+      {{#each yourAnswers}}
+        <li>{{text}}</li>
+      {{/each}}
+    </ul>
   {{/if}}
 </template>
 

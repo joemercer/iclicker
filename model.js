@@ -93,6 +93,10 @@ Meteor.methods({
       return 'answer doesn\'t exist';
     }
 
+    if (_(answer.endorsers).contains(this.userId)) {
+      return 'already endorsed this answer';
+    }
+
     return Answers.update(answer, {$push: {endorsers: this.userId}});
   }
 
