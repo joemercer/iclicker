@@ -120,11 +120,9 @@ Template.activeGroup.questions = function() {
 
 Template.activeQuestion.events({
   'click .answerQuestion': function(e, tmpl) {
-    debugger;
-    // var activeGroup = Session.get('activeGroup');
-    // var questionText = e.target.text;
-    // var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
-    // Session.set('activeQuestion', question);
+    var activeQuestion = Session.get('activeQuestion');
+    var answerText = e.target.text;
+    Meteor.call('answerQuestion', activeQuestion._id, answerText);
   }
 });
 

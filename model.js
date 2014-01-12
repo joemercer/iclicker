@@ -86,18 +86,14 @@ Meteor.methods({
     });
   },
 
-  answerQuestion: function (questionId, answer) {
-    // var question = Questions.findOne({_id: questionId});
+  answerQuestion: function (questionId, answerText) {
+    var answer = Answers.findOne({questionId: questionId, text: answerText});
 
-    // if (!question) {
-    //   return 'question doesn\'t exist';
-    // }
+    if (!answer) {
+      return 'answer doesn\'t exist';
+    }
 
-    // if (!_(question.answers).contains(answer)) {
-    //   return 'answer doesn\'t exist';
-    // }
-
-    // return Questions.update(group, {$push: {members: this.userId}});
+    return Answers.update(answer, {$push: {endorsers: this.userId}});
   }
 
 });
