@@ -77,8 +77,6 @@ Template.groups.mine = function() {
 // # Active Group
 // ______________
 
-Session.set('activeQuestion', null);
-
 Template.activeGroup.events({
   'click #addQuestion': function(e, tmpl) {
     var activeGroup = Session.get('activeGroup');
@@ -99,16 +97,8 @@ Template.activeGroup.events({
     var activeGroup = Session.get('activeGroup');
     var questionId = $(e.target).data().questionid;
     Meteor.call('activateQuestion', activeGroup._id, questionId);
-  }//,
+  }
 
-  // 'click .selectQuestion': function(e, tmpl) {
-  //   debugger;
-  //   // this needs to be changed :) // also removed class in markup
-  //   var activeGroup = Session.get('activeGroup');
-  //   var questionText = e.target.text;
-  //   var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
-  //   Session.set('activeQuestion', question);
-  // }
 });
 
 Template.activeGroup.activeGroup = function() {
@@ -137,27 +127,46 @@ Template.activeGroup.questions = function() {
 
 Template.activeQuestion.events({
   'click .answerQuestion': function(e, tmpl) {
-    var activeQuestion = Session.get('activeQuestion');
     var answerText = e.target.text;
-    Meteor.call('answerQuestion', activeQuestion._id, answerText);
+
+    var activeGroup = Session.get('activeGroup');
+    if (activeGroup) {
+      var question = Questions.findOne({groupId: activeGroup._id, active: true});
+      if (question) {
+        Meteor.call('answerQuestion', question._id, answerText);
+      }
+    }
   }
 });
 
 Template.activeQuestion.activeQuestion = function() {
-  var question = Session.get('activeQuestion');
-  if (question) {
-    return question.text;
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return question.text;
+    }
   }
 };
 
 Template.activeQuestion.answers = function() {
-  var question = Session.get('activeQuestion');
-  return Answers.find({questionId: question._id});
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return Answers.find({questionId: question._id});
+    }
+  }
 };
 
 Template.activeQuestion.yourAnswers = function() {
-  var question = Session.get('activeQuestion');
-  return Answers.find({questionId: question._id, endorsers: Meteor.user()._id});
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return Answers.find({questionId: question._id, endorsers: Meteor.user()._id});
+    }
+  }
 };
 
 
