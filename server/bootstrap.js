@@ -32,7 +32,7 @@ Meteor.startup(function () {
   // }
 
   if (Groups.find({}).count() === 0) {
-    var data = [
+    var groupData = [
       {
         creator: '1',
         createdAt: (new Date()),
@@ -53,9 +53,10 @@ Meteor.startup(function () {
       }
     ];
 
-    for (var i=0; i<data.length; ++i) {
-      Groups.insert(data[i]);
+    for (var i=0; i<groupData.length; ++i) {
+      Groups.insert(groupData[i]);
     };
+
   }
 
 });

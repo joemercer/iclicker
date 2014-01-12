@@ -61,7 +61,8 @@ Template.groups.events({
   },
   'click .enterGroup': function(e, tmpl) {
     var groupName = e.target.text;
-    Session.set('activeGroup', groupName);
+    var group = Groups.findOne({groupName: groupName});
+    Session.set('activeGroup', group);
   }
 });
 
@@ -76,8 +77,33 @@ Template.groups.mine = function() {
 // # Active Group
 // ______________
 
-Template.activeGroup.label = function() {
-  return Session.get('activeGroup');
+Template.activeGroup.events({
+  'click #addQuestion': function(e, tmpl) {
+    var activeGroup = Session.get('activeGroup');
+    var question = tmpl.find('#questionText').value;
+    var timeLimit = parseInt(tmpl.find('#questionTimeLimit').value);
+    var answers = [
+      tmpl.find('#answerA').value,
+      tmpl.find('#answerB').value,
+      tmpl.find('#answerC').value,
+      tmpl.find('#answerD').value,
+      tmpl.find('#answerE').value
+    ];
+
+    Meteor.call('createQuestionAndAnswers', activeGroup._id, question, timeLimit, answers);
+  }
+});
+
+Template.activeGroup.activeGroup = function() {
+  var group = Session.get('activeGroup');
+  if (group) {
+    return group.groupName;
+  }
+};
+
+Template.activeGroup.questions = function() {
+  var activeGroup = Session.get('activeGroup');
+  return Questions.find({groupId: activeGroup._id});
 };
 
 
