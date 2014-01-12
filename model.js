@@ -51,6 +51,7 @@ Meteor.methods({
         createdAt: (new Date()),
         groupId: groupId,
         text: text,
+        active: false,
         timeLimit: timeLimit
       });
     }
@@ -84,6 +85,16 @@ Meteor.methods({
         });
       }
     });
+  },
+
+  activateQuestion: function (groupId, questionId) {
+    var oldActiveQuestion = Questions.findOne({groupId: groupId, active: true});
+
+    if (oldActiveQuestion) {
+      Questions.update(oldActiveQuestion, {$set: {active: false}});
+    }
+
+    return Questions.update({_id: questionId}, {$set: {active: true}});
   },
 
   answerQuestion: function (questionId, answerText) {

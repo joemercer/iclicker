@@ -95,12 +95,20 @@ Template.activeGroup.events({
     Meteor.call('createQuestionAndAnswers', activeGroup._id, question, timeLimit, answers);
   },
 
-  'click .selectQuestion': function(e, tmpl) {
+  'click .activateQuestion': function(e, tmpl) {
     var activeGroup = Session.get('activeGroup');
-    var questionText = e.target.text;
-    var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
-    Session.set('activeQuestion', question);
-  }
+    var questionId = $(e.target).data().questionid;
+    Meteor.call('activateQuestion', activeGroup._id, questionId);
+  }//,
+
+  // 'click .selectQuestion': function(e, tmpl) {
+  //   debugger;
+  //   // this needs to be changed :) // also removed class in markup
+  //   var activeGroup = Session.get('activeGroup');
+  //   var questionText = e.target.text;
+  //   var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
+  //   Session.set('activeQuestion', question);
+  // }
 });
 
 Template.activeGroup.activeGroup = function() {
@@ -120,6 +128,9 @@ Template.activeGroup.questions = function() {
   var activeGroup = Session.get('activeGroup');
   return Questions.find({groupId: activeGroup._id});
 };
+
+
+
 
 // # Active Question
 // _________________

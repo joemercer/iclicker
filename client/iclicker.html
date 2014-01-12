@@ -111,7 +111,7 @@
 
       <ul>
         {{#each questions}}
-          <li><a class="selectQuestion">{{text}}</a></li>
+          <li><a class="activateQuestion" data-questionid="{{_id}}">Active: {{active}}</a> - Question: {{text}}</li>
         {{/each}}
       </ul>
 
