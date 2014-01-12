@@ -110,6 +110,12 @@ Template.activeGroup.activeGroup = function() {
   }
 };
 
+Template.activeGroup.canAddQuestion = function() {
+  var group = Session.get('activeGroup');
+  var user = Meteor.user();
+  return group.creator === user._id;
+};
+
 Template.activeGroup.questions = function() {
   var activeGroup = Session.get('activeGroup');
   return Questions.find({groupId: activeGroup._id});

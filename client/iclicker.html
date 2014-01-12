@@ -95,15 +95,19 @@
   {{#if activeGroup}}
     <h2>Your active group is {{activeGroup}}</h2>
 
-    <input id="questionText" type="text" value="What is your favorite color?">
-    <input id="answerA" type="text" value="Blue">
-    <input id="answerB" type="text" value="Green">
-    <input id="answerC" type="text" value="Red">
-    <input id="answerD" type="text" value="Pink">
-    <input id="answerE" type="text" value="Yellow">
-    <input id="questionTimeLimit" type="text" value="120">
+    {{#if canAddQuestion}}
 
-    <input id="addQuestion" type="button" value="Add Question">
+      <input id="questionText" type="text" value="What is your favorite color?">
+      <input id="answerA" type="text" value="Blue">
+      <input id="answerB" type="text" value="Green">
+      <input id="answerC" type="text" value="Red">
+      <input id="answerD" type="text" value="Pink">
+      <input id="answerE" type="text" value="Yellow">
+      <input id="questionTimeLimit" type="text" value="120">
+
+      <input id="addQuestion" type="button" value="Add Question">
+
+    {{/if}}
 
     <p>All of the questions, click to answer a question</p>
 
