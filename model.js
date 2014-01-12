@@ -66,7 +66,7 @@ Meteor.methods({
       return Answers.insert({
         creator: this.userId,
         createdAt: (new Date()),
-        question: questionId,
+        questionId: questionId,
         text: text,
         endorsers: []
       });

@@ -55,6 +55,9 @@
     <div>
       {{> activeGroup}}
     </div>
+    <div>
+      {{> activeQuestion}}
+    </div>
   {{/if}}
 </template>
 
@@ -102,14 +105,26 @@
 
     <input id="addQuestion" type="button" value="Add Question">
 
-    <p>All of the questions:</p>
+    <p>All of the questions, click to answer a question</p>
 
     <ul>
       {{#each questions}}
-        <li>{{text}}</li>
+        <li><a class="selectQuestion">{{text}}</a></li>
       {{/each}}
     </ul>
 
+  {{/if}}
+</template>
+
+<template name="activeQuestion">
+  {{#if activeQuestion}}
+    <h2>Current Question: {{text}}</h2>
+    <p>And the answer are</p>
+    <ol>
+      {{#each answers}}
+        <li><a class="answerQuestion">{{text}}</a></li>
+      {{/each}}
+    </ol>
   {{/if}}
 </template>
 

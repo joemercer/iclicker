@@ -77,6 +77,8 @@ Template.groups.mine = function() {
 // # Active Group
 // ______________
 
+Session.set('activeQuestion', null);
+
 Template.activeGroup.events({
   'click #addQuestion': function(e, tmpl) {
     var activeGroup = Session.get('activeGroup');
@@ -91,6 +93,13 @@ Template.activeGroup.events({
     ];
 
     Meteor.call('createQuestionAndAnswers', activeGroup._id, question, timeLimit, answers);
+  },
+
+  'click .selectQuestion': function(e, tmpl) {
+    var activeGroup = Session.get('activeGroup');
+    var questionText = e.target.text;
+    var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
+    Session.set('activeQuestion', question);
   }
 });
 
@@ -105,6 +114,38 @@ Template.activeGroup.questions = function() {
   var activeGroup = Session.get('activeGroup');
   return Questions.find({groupId: activeGroup._id});
 };
+
+// # Active Question
+// _________________
+
+Template.activeQuestion.events({
+  'click .answerQuestion': function(e, tmpl) {
+    debugger;
+    // var activeGroup = Session.get('activeGroup');
+    // var questionText = e.target.text;
+    // var question = Questions.findOne({groupId: activeGroup._id, text: questionText});
+    // Session.set('activeQuestion', question);
+  }
+});
+
+Template.activeQuestion.activeQuestion = function() {
+  var question = Session.get('activeQuestion');
+  if (question) {
+    return question.text;
+  }
+};
+
+Template.activeQuestion.answers = function() {
+  var question = Session.get('activeQuestion');
+  return Answers.find({questionId: question._id});
+};
+
+
+
+
+
+
+
 
 
 
