@@ -56,6 +56,9 @@ Template.groups.events({
     var groupName = tmpl.find('#groupName').value;
     Meteor.call('createGroup', groupName);
   },
+  // currently groups have a unique groupName
+  // !!! this is stupid, they should have a unique id
+  // we would have to refactor this code
   'click .joinGroup': function(e, tmpl) {
     var groupName = $(e.target).data().groupname;
     Meteor.call('joinGroup', groupName);
@@ -81,6 +84,7 @@ Template.groups.mine = function() {
 Template.activeGroup.events({
   'click #addQuestion': function(e, tmpl) {
     var activeGroup = Session.get('activeGroup');
+    // get new question data from inputs
     var question = tmpl.find('#questionText').value;
     var timeLimit = parseInt(tmpl.find('#questionTimeLimit').value);
     var answers = [
