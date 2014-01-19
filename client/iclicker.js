@@ -131,6 +131,9 @@ Template.activeGroup.questions = function() {
 // _________________
 
 Template.activeQuestion.events({
+  // right now an answer has a unique answer text within a group
+  // !!! this is stupid, we should just use the ids
+  // we would have to refactor this
   'click .answerQuestion': function(e, tmpl) {
     var answerText = e.target.text;
 
