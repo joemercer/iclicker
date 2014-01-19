@@ -52,15 +52,16 @@ Session.set('activeGroup', null);
 
 Template.groups.events({
   'click #createGroup': function(e, tmpl) {
+    // grab new groupName from input#groupName field
     var groupName = tmpl.find('#groupName').value;
     Meteor.call('createGroup', groupName);
   },
   'click .joinGroup': function(e, tmpl) {
-    var groupName = e.target.text;
+    var groupName = $(e.target).data().groupname;
     Meteor.call('joinGroup', groupName);
   },
   'click .enterGroup': function(e, tmpl) {
-    var groupName = e.target.text;
+    var groupName = $(e.target).data().groupname;
     var group = Groups.findOne({groupName: groupName});
     Session.set('activeGroup', group);
   }

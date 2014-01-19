@@ -80,13 +80,13 @@
   <p>Click to join a course</p>
   <ul>
     {{#each all}}
-      <li><a class="joinGroup">{{groupName}}</a></li>
+      <li><a class="joinGroup" data-groupname="{{groupName}}">{{groupName}}</a></li>
     {{/each}}
   </ul>
   <p>My courses, click to enter the classroom</p>
   <ul>
     {{#each mine}}
-      <li><a class="enterGroup">{{groupName}}</a></li>
+      <li><a class="enterGroup" data-groupname="{{groupName}}">{{groupName}}</a></li>
     {{/each}}
   </ul>
 </template>
