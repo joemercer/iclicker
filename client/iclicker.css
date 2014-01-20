@@ -511,6 +511,40 @@ body .iclicker_wrapper .iclicker_header .header_text h1 {
   text-transform: uppercase;
   font-size: 20px;
 }
+body .iclicker_wrapper .add_question {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+body .iclicker_wrapper .add_question .input_desc {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+  padding-right: 8px;
+  font-size: 12px;
+}
+body .iclicker_wrapper .add_question input[type='text'] {
+  background: rgba(85, 85, 85, 0.21);
+  margin: 2.5px auto;
+  padding: 9px 10px;
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+}
+body .iclicker_wrapper .add_question input[type='button'] {
+  display: block;
+  padding: 12px 20px;
+  border-radius: 3px;
+  margin: 2px auto;
+  margin-top: 3px;
+  background: #5bbea1;
+  color: rgba(0, 0, 0, 0.62);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  width: 85%;
+}
 body .iclicker_wrapper .iclicker_active {
   padding: 0px 20px;
   margin-top: 15px;

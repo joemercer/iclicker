@@ -152,15 +152,17 @@
       </div>
 
       {{#if admin}}
-        <input id="questionText" type="text" value="What is your favorite color?">
-        <input id="answerA" type="text" value="Blue">
-        <input id="answerB" type="text" value="Green">
-        <input id="answerC" type="text" value="Red">
-        <input id="answerD" type="text" value="Pink">
-        <input id="answerE" type="text" value="Yellow">
-        <input id="questionTimeLimit" type="text" value="120">
+      <div class="add_question">
+        <div class="input_desc">Question:</div><input id="questionText" type="text" placeholder="What is your favorite color?"></br>
+        <div class="input_desc">A:</div><input id="answerA" type="text" placeholder="Blue"></br>
+        <div class="input_desc">B:</div><input id="answerB" type="text" placeholder="Green"></br>
+        <div class="input_desc">C:</div><input id="answerC" type="text" placeholder="Red"></br>
+        <div class="input_desc">D:</div><input id="answerD" type="text" placeholder="Pink"></br>
+        <div class="input_desc">E:</div><input id="answerE" type="text" placeholder="Yellow"></br>
+        <div class="input_desc">Timer(s):</div><input id="questionTimeLimit" type="text" value="120">
 
         <input id="addQuestion" type="button" value="Add Question">
+      </div><!-- end add_question -->
 
         <p>All of the questions, click to answer a question</p>
 
