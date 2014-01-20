@@ -55,12 +55,11 @@
       {{/if}}
     </div>
     <div>
-      {{#if activePage 'myGroups'}}
+      {{#if activePage.myGroups}}
         {{> myGroups}}
-      {{/if}}
-      {{#if activePage 'groupMain'}}
-        {{> groupMain}}
-      {{/if}}
+      {{else}} {{#if activePage.activeGroup}}
+        {{> activeGroup}}
+      {{/if}} {{/if}}
     </div>
     <br><br><br><br>
     <div>
@@ -123,7 +122,11 @@
   </div>
 </template>
 
+
+
+
 <template name="groupMain">
+  <h1>Can probably delete this in favor of activeGroup</h1>
   <h3>{{groupName}}</h3>
 </template>
 

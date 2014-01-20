@@ -26,7 +26,11 @@ Template.loggedOut.events({
 // !!! should probably incorporate a router
 
 Session.set('sidebar', false);
-Session.set('activePage', 'myGroups');
+Session.set('activePage', {
+  activePage: 'myGroups',
+  myGroups: true,
+  activeGroup: false
+});
 
 Session.set('activeGroup', null);
 
@@ -64,8 +68,12 @@ Template.myGroups.events({
     var groupId = $(e.target).parents('.enterGroup').data().groupid;
     var group = Groups.findOne({_id: groupId});
     Session.set('activeGroup', group);
-    Session.set('activePage', 'groupMain');
-    debugger;
+
+    var page = Session.get('activePage');
+    page[page.activePage] = false;
+    page.activePage = 'activeGroup';
+    page[page.activePage] = true;
+    Session.set('activePage', page);
   }
 });
 
@@ -77,17 +85,17 @@ Template.myGroups.groups = function() {
 // __________
 
 
-// Group Main
-// - view for information about a specific group (not admin)
-// __________
+// // Group Main
+// // - view for information about a specific group (not admin)
+// // __________
 
-Template.groupMain.groupName = function() {
-  var group = Session.get('activeGroup');
+// Template.groupMain.groupName = function() {
+//   var group = Session.get('activeGroup');
 
-  if (group) {
-    return group.groupName;
-  }
-};
+//   if (group) {
+//     return group.groupName;
+//   }
+// };
 
 // # Profiles
 // __________
