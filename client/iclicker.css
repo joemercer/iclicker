@@ -346,29 +346,30 @@ body #search {
   background-size: 22px;
   opacity: 0.9;
 }
-body #sidebar {
-  display: none;
+body #sidebar #sidebar_wrapper {
   width: 120px;
   background: gray;
   height: 100vh;
+  z-index: 10;
+  position: absolute;
 }
-body #sidebar #user_photo {
+body #sidebar #sidebar_wrapper #user_photo {
   display: block;
   width: 50px;
   overflow: hidden;
   border-radius: 50%;
   margin: 20px auto 0px auto;
 }
-body #sidebar p {
+body #sidebar #sidebar_wrapper p {
   padding: 8px 10px;
   text-align: center;
 }
-body #sidebar #sidebar_listing {
+body #sidebar #sidebar_wrapper #sidebar_listing {
   display: block;
   padding: 10px 0px;
   text-align: center;
 }
-body #sidebar #sidebar_listing li {
+body #sidebar #sidebar_wrapper #sidebar_listing li {
   padding: 8px 10px;
   -webkit-transition: all 0.7s ease 0s;
   -moz-transition: all 0.7s ease 0s;
@@ -376,10 +377,10 @@ body #sidebar #sidebar_listing li {
   -ms-transition: all 0.7s ease 0s;
   transition: all 0.7s ease 0s;
 }
-body #sidebar #sidebar_listing li a {
+body #sidebar #sidebar_wrapper #sidebar_listing li a {
   font-weight: 500;
 }
-body #sidebar #sidebar_listing a:hover {
+body #sidebar #sidebar_wrapper #sidebar_listing a:hover {
   color: #5bbea1;
   -webkit-transition: all 0.7s ease 0s;
   -moz-transition: all 0.7s ease 0s;
@@ -387,26 +388,26 @@ body #sidebar #sidebar_listing a:hover {
   -ms-transition: all 0.7s ease 0s;
   transition: all 0.7s ease 0s;
 }
-body #sidebar #sidebar_listing #sidebar_sublisting {
+body #sidebar #sidebar_wrapper #sidebar_listing #sidebar_sublisting {
   display: block;
   /*
-				li:first-child{
-					border-top: 1px solid #202020;
-					padding-top: 5px;
-				}
-				li:last-child{
-					border-bottom: 1px solid #202020;
-					padding-bottom: 5px;
-				}*/
+					li:first-child{
+						border-top: 1px solid #202020;
+						padding-top: 5px;
+					}
+					li:last-child{
+						border-bottom: 1px solid #202020;
+						padding-bottom: 5px;
+					}*/
 
 }
-body #sidebar #sidebar_listing #sidebar_sublisting li {
+body #sidebar #sidebar_wrapper #sidebar_listing #sidebar_sublisting li {
   padding: 3px 0px 3px 0px;
   font-size: 13px;
   font-weight: 400;
   color: #b4b4b4;
 }
-body #sidebar #sidebar_listing #sidebar_sublisting li a {
+body #sidebar #sidebar_wrapper #sidebar_listing #sidebar_sublisting li a {
   font-weight: 400;
 }
 body .course_wrapper {

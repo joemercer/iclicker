@@ -83,8 +83,11 @@
 </template>
 
 <template name="sidebar">
-  Hello {{currentUser.profile.name}}
-  <input id="logout" type="button" value="Log out">
+  <div id="sidebar_wrapper">
+    <img id="user_photo" src="/img/user_photo.jpg">
+    Hello {{currentUser.profile.name}}
+    <input id="logout" type="button" value="Log out">
+  </div>
 </template>
 
 <template name="myGroups">

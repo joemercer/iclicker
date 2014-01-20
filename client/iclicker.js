@@ -65,7 +65,6 @@ Template.myGroups.events({
     var group = Groups.findOne({_id: groupId});
     Session.set('activeGroup', group);
     Session.set('activePage', 'groupMain');
-    debugger;
   }
 });
 
