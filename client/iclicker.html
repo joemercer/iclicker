@@ -43,6 +43,24 @@
     <p>Logging in...</p>
   {{else}}
     <div>
+      <button id="toggle" class="toggle-sidebar">
+        <span class="icon_bar"></span>
+        <span class="icon_bar"></span>
+        <span class="icon_bar"></span>
+      </button>
+    </div>
+    <div id="sidebar">
+      {{#if sidebar}}
+        {{> sidebar}}
+      {{/if}}
+    </div>
+    <div>
+      {{#if activePage 'myGroups'}}
+        {{> myGroups}}
+      {{/if}}
+    </div>
+    <br><br><br><br>
+    <div>
       Hello {{currentUser.profile.name}}
       <input id="logout" type="button" value="Log out">
     </div>
@@ -61,8 +79,34 @@
   {{/if}}
 </template>
 
+<template name="sidebar">
+  Hello {{currentUser.profile.name}}
+  <input id="logout" type="button" value="Log out">
+</template>
 
+<template name="myGroups">
+  <div class="course_wrapper wrapper">
+    <div class="course_header">
+      <h4>Enroll in a</h4>
+      <h1>Course</h1>
+    </div>
+    <div class="course_selection">
+      <ul id="ongoing">
+        <h4>Ongoing</h4>
+        <hr>
+        {{#each groups}}
+          <li>
+            {{> group-item}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>
 
+<template name="group-item">
+  <a class="enterGroup" data-groupid="{{_id}}">{{groupName}}</a>
+</template>
 
 
 

@@ -22,6 +22,12 @@ Template.loggedOut.events({
   }
 });
 
+// loggedIn template will contain basic app structure
+// !!! should probably incorporate a router
+
+Session.set('sidebar', false);
+Session.set('activePage', 'myGroups');
+
 Template.loggedIn.events({
   'click #logout': function (e, tmpl) {
     Meteor.logout(function (err) {
@@ -32,8 +38,27 @@ Template.loggedIn.events({
         // successfully logged out
       }
     });
+  },
+
+  'click .toggle-sidebar': function(e, tmpl) {
+    Session.set('sidebar', !Session.get('sidebar'));
   }
 });
+
+Template.loggedIn.sidebar = function() {
+  return Session.get('sidebar');
+};
+
+Template.loggedIn.activePage = function() {
+  return Session.get('activePage');
+};
+
+// # My Groups
+// ___________
+
+Template.myGroups.groups = function() {
+  return Groups.find({members: Meteor.user()._id});
+};
 
 // # Profiles
 // __________
