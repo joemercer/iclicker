@@ -547,6 +547,36 @@ body .iclicker_wrapper .add_question input[type='button'] {
   font-size: 14px;
   width: 100%;
 }
+body .iclicker_wrapper .activate_question {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+body .iclicker_wrapper .activate_question ul li {
+  display: block;
+  text-align: left;
+}
+body .iclicker_wrapper .activate_question ul li a {
+  display: inline-block;
+  padding: 8px 16px;
+  color: gray;
+  background: #5bbea1;
+  color: rgba(0, 0, 0, 0.62);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 2px auto;
+  font-size: 12px;
+  width: 96px;
+  margin-right: 5px;
+  width: 83px;
+}
+body .iclicker_wrapper .activate_question ul li p {
+  display: inline-block;
+  font-size: 12px;
+}
 body .iclicker_wrapper .iclicker_active {
   padding: 0px 20px;
   margin-top: 15px;
