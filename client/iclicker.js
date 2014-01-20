@@ -134,6 +134,49 @@ Template.activeGroup.questions = function() {
 
 
 
+// # Active Question
+// _________________
+
+Template.activeQuestion.events({
+  'click .answerQuestion': function(e, tmpl) {
+    var answerId = $(e.target).data().answerid;
+    Meteor.call('answerQuestion', answerId);
+  }
+});
+
+Template.activeQuestion.activeQuestion = function() {
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return question.text;
+    }
+  }
+};
+
+Template.activeQuestion.answers = function() {
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return Answers.find({questionId: question._id});
+    }
+  }
+};
+
+Template.activeQuestion.yourAnswers = function() {
+  var activeGroup = Session.get('activeGroup');
+  if (activeGroup) {
+    var question = Questions.findOne({groupId: activeGroup._id, active: true});
+    if (question) {
+      return Answers.find({questionId: question._id, endorsers: Meteor.user()._id});
+    }
+  }
+};
+
+
+
+
 // # Profiles
 // __________
 
@@ -177,46 +220,6 @@ Template.groups.mine = function() {
 
 
 
-
-// # Active Question
-// _________________
-
-Template.activeQuestion.events({
-  'click .answerQuestion': function(e, tmpl) {
-    var answerId = $(e.target).data().answerid;
-    Meteor.call('answerQuestion', answerId);
-  }
-});
-
-Template.activeQuestion.activeQuestion = function() {
-  var activeGroup = Session.get('activeGroup');
-  if (activeGroup) {
-    var question = Questions.findOne({groupId: activeGroup._id, active: true});
-    if (question) {
-      return question.text;
-    }
-  }
-};
-
-Template.activeQuestion.answers = function() {
-  var activeGroup = Session.get('activeGroup');
-  if (activeGroup) {
-    var question = Questions.findOne({groupId: activeGroup._id, active: true});
-    if (question) {
-      return Answers.find({questionId: question._id});
-    }
-  }
-};
-
-Template.activeQuestion.yourAnswers = function() {
-  var activeGroup = Session.get('activeGroup');
-  if (activeGroup) {
-    var question = Questions.findOne({groupId: activeGroup._id, active: true});
-    if (question) {
-      return Answers.find({questionId: question._id, endorsers: Meteor.user()._id});
-    }
-  }
-};
 
 
 
