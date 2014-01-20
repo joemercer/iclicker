@@ -58,6 +58,9 @@
       {{#if activePage 'myGroups'}}
         {{> myGroups}}
       {{/if}}
+      {{#if activePage 'groupMain'}}
+        {{> groupMain}}
+      {{/if}}
     </div>
     <br><br><br><br>
     <div>
@@ -95,8 +98,8 @@
         <h4>Ongoing</h4>
         <hr>
         {{#each groups}}
-          <li>
-            {{> group-item}}
+          <li class="enterGroup course_ongoing" data-groupid="{{_id}}">
+            {{> groupItem}}
           </li>
         {{/each}}
       </ul>
@@ -104,8 +107,24 @@
   </div>
 </template>
 
-<template name="group-item">
-  <a class="enterGroup" data-groupid="{{_id}}">{{groupName}}</a>
+<template name="groupItem">
+  <p>{{groupName}}</p>
+  <h3>{{groupName}}</h3>
+  <div class="course_info">
+    <img src="/img/location.png">
+    <p>MC1006</p>
+  </div>
+  <div class="course_info">
+    <img src="/img/time.png">
+    <p>6:00pm - 7:50pm</p>
+  </div>
+  <div id="course_enter">
+    <img id="course_enter" src="/img/arrow.png">
+  </div>
+</template>
+
+<template name="groupMain">
+  <h3>{{groupName}}</h3>
 </template>
 
 

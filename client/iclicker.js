@@ -28,6 +28,8 @@ Template.loggedOut.events({
 Session.set('sidebar', false);
 Session.set('activePage', 'myGroups');
 
+Session.set('activeGroup', null);
+
 Template.loggedIn.events({
   'click #logout': function (e, tmpl) {
     Meteor.logout(function (err) {
@@ -56,8 +58,35 @@ Template.loggedIn.activePage = function() {
 // # My Groups
 // ___________
 
+Template.myGroups.events({
+  'click .enterGroup': function(e, tmpl) {
+    // !!! this doesn't work if you click on the li.enterGroup element
+    var groupId = $(e.target).parents('.enterGroup').data().groupid;
+    var group = Groups.findOne({_id: groupId});
+    Session.set('activeGroup', group);
+    Session.set('activePage', 'groupMain');
+    debugger;
+  }
+});
+
 Template.myGroups.groups = function() {
   return Groups.find({members: Meteor.user()._id});
+};
+
+// Group Item
+// __________
+
+
+// Group Main
+// - view for information about a specific group (not admin)
+// __________
+
+Template.groupMain.groupName = function() {
+  var group = Session.get('activeGroup');
+
+  if (group) {
+    return group.groupName;
+  }
 };
 
 // # Profiles
@@ -72,8 +101,6 @@ Template.profile.events({
 
 // # Groups
 // ________
-
-Session.set('activeGroup', null);
 
 Template.groups.events({
   'click #createGroup': function(e, tmpl) {
