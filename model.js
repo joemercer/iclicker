@@ -97,8 +97,8 @@ Meteor.methods({
     return Questions.update({_id: questionId}, {$set: {active: true}});
   },
 
-  answerQuestion: function (questionId, answerText) {
-    var answer = Answers.findOne({questionId: questionId, text: answerText});
+  answerQuestion: function (answerId) {
+    var answer = Answers.findOne({_id: answerId});
 
     if (!answer) {
       return 'answer doesn\'t exist';

@@ -86,7 +86,7 @@
   <p>My courses, click to enter the classroom</p>
   <ul>
     {{#each mine}}
-      <li><a class="enterGroup" data-groupname="{{groupName}}">{{groupName}}</a></li>
+      <li><a class="enterGroup" data-groupid="{{_id}}">{{groupName}}</a></li>
     {{/each}}
   </ul>
 </template>
@@ -126,7 +126,7 @@
     <p>And the answers are</p>
     <ol>
       {{#each answers}}
-        <li><a class="answerQuestion">{{text}}</a></li>
+        <li><a class="answerQuestion" data-answerid="{{_id}}">{{text}}</a></li>
       {{/each}}
     </ol>
     <p>Your answers:</p>

@@ -58,14 +58,14 @@ Template.groups.events({
   },
   // currently groups have a unique groupName
   // !!! this is stupid, they should have a unique id
-  // we would have to refactor this code
+  // we would have to refactor this code to use _id not groupName
   'click .joinGroup': function(e, tmpl) {
     var groupName = $(e.target).data().groupname;
     Meteor.call('joinGroup', groupName);
   },
   'click .enterGroup': function(e, tmpl) {
-    var groupName = $(e.target).data().groupname;
-    var group = Groups.findOne({groupName: groupName});
+    var groupId = $(e.target).data().groupid;
+    var group = Groups.findOne({_id: groupId});
     Session.set('activeGroup', group);
   }
 });
@@ -131,19 +131,9 @@ Template.activeGroup.questions = function() {
 // _________________
 
 Template.activeQuestion.events({
-  // right now an answer has a unique answer text within a group
-  // !!! this is stupid, we should just use the ids
-  // we would have to refactor this
   'click .answerQuestion': function(e, tmpl) {
-    var answerText = e.target.text;
-
-    var activeGroup = Session.get('activeGroup');
-    if (activeGroup) {
-      var question = Questions.findOne({groupId: activeGroup._id, active: true});
-      if (question) {
-        Meteor.call('answerQuestion', question._id, answerText);
-      }
-    }
+    var answerId = $(e.target).data().answerid;
+    Meteor.call('answerQuestion', answerId);
   }
 });
 
