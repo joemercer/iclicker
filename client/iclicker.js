@@ -24,6 +24,8 @@ Template.loggedOut.events({
 
 // loggedIn template will contain basic app structure
 // !!! should probably incorporate a router
+// additional view logic is within sidebar and activeGroup (for questions)
+// => router needs to exist between multiple views
 
 Session.set('sidebar', false);
 Session.set('activePage', {
@@ -58,6 +60,19 @@ Template.loggedIn.sidebar = function() {
 Template.loggedIn.activePage = function() {
   return Session.get('activePage');
 };
+
+// # Sidebar
+// _________
+
+Template.sidebar.events({
+  'click .goto-myGroups': function(e, tmpl) {
+    var page = Session.get('activePage');
+    page[page.activePage] = false;
+    page.activePage = 'myGroups';
+    page[page.activePage] = true;
+    Session.set('activePage', page);
+  }
+});
 
 // # My Groups
 // ___________
