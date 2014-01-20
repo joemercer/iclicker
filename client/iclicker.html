@@ -84,8 +84,21 @@
 <template name="sidebar">
   <div id="sidebar_wrapper">
     <img id="user_photo" src="/img/user_photo.jpg">
-    Hello {{currentUser.profile.name}}
-    <input id="logout" type="button" value="Log out">
+    <p>Hello {{currentUser.profile.name}}</p>
+    <ul id="sidebar_listing">
+      <li><a href="">Profile</a></li>
+      <li><a href="">Courses</li><a></li>
+      <ul id="sidebar_sublisting">
+        <li><a href="">View All</a></li>
+        <li><a href="">Enrolled</a></li>
+        <li><a href="">Not Enrolled</a></li>
+        <li><a href="">Create</a></li>
+      </ul>
+
+      <li id="logout" value="Log out" style="position: absolute; bottom: 20px; width: 94%; padding: 0;"><a href="">
+        <img style="opacity:0.4; width: 15px;" src="/img/logoff.png">
+      </a></li>
+    </ul>
   </div>
 </template>
 

@@ -348,7 +348,7 @@ body #search {
 }
 body #sidebar #sidebar_wrapper {
   width: 120px;
-  background: gray;
+  background: #1a1a1a;
   height: 100vh;
   z-index: 10;
   position: absolute;
