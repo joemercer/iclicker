@@ -135,33 +135,60 @@
         <div class="header_text">
           <h4>{{activeGroup}}</h4>
           <h1>{{activeGroup}}</h1>
-
-          {{#if admin}}
-            <input id="questionText" type="text" value="What is your favorite color?">
-            <input id="answerA" type="text" value="Blue">
-            <input id="answerB" type="text" value="Green">
-            <input id="answerC" type="text" value="Red">
-            <input id="answerD" type="text" value="Pink">
-            <input id="answerE" type="text" value="Yellow">
-            <input id="questionTimeLimit" type="text" value="120">
-
-            <input id="addQuestion" type="button" value="Add Question">
-
-            <p>All of the questions, click to answer a question</p>
-
-            <ul>
-              {{#each questions}}
-                <li><a class="activateQuestion" data-questionid="{{_id}}">Active: {{active}}</a> - Question: {{text}}</li>
-              {{/each}}
-            </ul>
-          {{else}}
-            <h4>You're not an admin!</h4>
-          {{/if}}
-
         </div>
       </div>
+
+      {{#if admin}}
+        <input id="questionText" type="text" value="What is your favorite color?">
+        <input id="answerA" type="text" value="Blue">
+        <input id="answerB" type="text" value="Green">
+        <input id="answerC" type="text" value="Red">
+        <input id="answerD" type="text" value="Pink">
+        <input id="answerE" type="text" value="Yellow">
+        <input id="questionTimeLimit" type="text" value="120">
+
+        <input id="addQuestion" type="button" value="Add Question">
+
+        <p>All of the questions, click to answer a question</p>
+
+        <ul>
+          {{#each questions}}
+            <li><a class="activateQuestion" data-questionid="{{_id}}">Active: {{active}}</a> - Question: {{text}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
+        {{> activeQuestion}}
+      {{/if}}
+
     </div>
 
+  {{/if}}
+</template>
+
+<template name="activeQuestion">
+  {{#if activeQuestion}}
+    <div class="iclicker_active">
+      <div class="iclicker_question">
+        <h3>{{activeQuestion}}</h3>
+      </div>
+      <div class="iclicker_answer">
+        <ul id="iclicker_options">
+          {{#each answers}}
+            <li class="answer"><a class="answerQuestion" data-answerid="{{_id}}">{{text}}</a></li>
+          {{/each}}
+        </ul>
+        <p>Your answers:</p>
+        <ul>
+          {{#each yourAnswers}}
+            <li>{{text}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="timer">
+        <h3>timer:</h3>
+        <h4>00:05</h4>
+      </div>
+    </div>
   {{/if}}
 </template>
 
@@ -195,26 +222,6 @@
       <li><a class="enterGroup" data-groupid="{{_id}}">{{groupName}}</a></li>
     {{/each}}
   </ul>
-</template>
-
-
-
-<template name="activeQuestion">
-  {{#if activeQuestion}}
-    <h2>Current Question: {{activeQuestion}}</h2>
-    <p>And the answers are</p>
-    <ol>
-      {{#each answers}}
-        <li><a class="answerQuestion" data-answerid="{{_id}}">{{text}}</a></li>
-      {{/each}}
-    </ol>
-    <p>Your answers:</p>
-    <ul>
-      {{#each yourAnswers}}
-        <li>{{text}}</li>
-      {{/each}}
-    </ul>
-  {{/if}}
 </template>
 
 
