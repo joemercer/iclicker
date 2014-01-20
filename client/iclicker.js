@@ -85,17 +85,54 @@ Template.myGroups.groups = function() {
 // __________
 
 
-// // Group Main
-// // - view for information about a specific group (not admin)
-// // __________
 
-// Template.groupMain.groupName = function() {
-//   var group = Session.get('activeGroup');
+// # Active Group
+// ______________
 
-//   if (group) {
-//     return group.groupName;
-//   }
-// };
+Template.activeGroup.events({
+  'click #addQuestion': function(e, tmpl) {
+    var activeGroup = Session.get('activeGroup');
+    // get new question data from inputs
+    var question = tmpl.find('#questionText').value;
+    var timeLimit = parseInt(tmpl.find('#questionTimeLimit').value);
+    var answers = [
+      tmpl.find('#answerA').value,
+      tmpl.find('#answerB').value,
+      tmpl.find('#answerC').value,
+      tmpl.find('#answerD').value,
+      tmpl.find('#answerE').value
+    ];
+
+    Meteor.call('createQuestionAndAnswers', activeGroup._id, question, timeLimit, answers);
+  },
+
+  'click .activateQuestion': function(e, tmpl) {
+    var activeGroup = Session.get('activeGroup');
+    var questionId = $(e.target).data().questionid;
+    Meteor.call('activateQuestion', activeGroup._id, questionId);
+  }
+
+});
+
+Template.activeGroup.activeGroup = function() {
+  var group = Session.get('activeGroup');
+  if (group) {
+    return group.groupName;
+  }
+};
+
+Template.activeGroup.admin = function() {
+  var group = Session.get('activeGroup');
+  var user = Meteor.user();
+  return group.creator === user._id;
+};
+
+Template.activeGroup.questions = function() {
+  var activeGroup = Session.get('activeGroup');
+  return Questions.find({groupId: activeGroup._id});
+};
+
+
 
 // # Profiles
 // __________
@@ -136,52 +173,6 @@ Template.groups.all = function() {
 
 Template.groups.mine = function() {
   return Groups.find({members: Meteor.user()._id});
-};
-
-// # Active Group
-// ______________
-
-Template.activeGroup.events({
-  'click #addQuestion': function(e, tmpl) {
-    var activeGroup = Session.get('activeGroup');
-    // get new question data from inputs
-    var question = tmpl.find('#questionText').value;
-    var timeLimit = parseInt(tmpl.find('#questionTimeLimit').value);
-    var answers = [
-      tmpl.find('#answerA').value,
-      tmpl.find('#answerB').value,
-      tmpl.find('#answerC').value,
-      tmpl.find('#answerD').value,
-      tmpl.find('#answerE').value
-    ];
-
-    Meteor.call('createQuestionAndAnswers', activeGroup._id, question, timeLimit, answers);
-  },
-
-  'click .activateQuestion': function(e, tmpl) {
-    var activeGroup = Session.get('activeGroup');
-    var questionId = $(e.target).data().questionid;
-    Meteor.call('activateQuestion', activeGroup._id, questionId);
-  }
-
-});
-
-Template.activeGroup.activeGroup = function() {
-  var group = Session.get('activeGroup');
-  if (group) {
-    return group.groupName;
-  }
-};
-
-Template.activeGroup.canAddQuestion = function() {
-  var group = Session.get('activeGroup');
-  var user = Meteor.user();
-  return group.creator === user._id;
-};
-
-Template.activeGroup.questions = function() {
-  var activeGroup = Session.get('activeGroup');
-  return Questions.find({groupId: activeGroup._id});
 };
 
 
